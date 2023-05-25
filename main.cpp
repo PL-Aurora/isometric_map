@@ -1,6 +1,7 @@
 #include "deltoid.hpp"
 #include "map.hpp"
 #include "matrix.hpp"
+#include "textboxes.hpp"
 
 int main(int, char**) {
 
@@ -15,7 +16,7 @@ int main(int, char**) {
 
     sf::Text mouse_pos;
     mouse_pos.setPosition(15, 15);
-    mouse_pos.setCharacterSize(12);
+    mouse_pos.setCharacterSize(8);
     mouse_pos.setFont(f);
     
     mouse_pos.setFillColor(sf::Color::Red);
@@ -57,19 +58,10 @@ int main(int, char**) {
 
     std::cout << "\n\n";
 
-    Matrix m2(6, 3);
-    Matrix m3(6, 3);
-
+    Matrix m2 = m1 * 10;
     m2.print();
 
-    std::cout << "\n\n";
-
-    m3.print();
-    std::cout << "\n\n";
-
-    Matrix m4 = m2 + m3;
-
-    m4.print(); */
+    std::cout << "\n\n"; */
 
     return 0;
 }
