@@ -1,3 +1,8 @@
+/*
+
+
+ */
+
 #include <iostream>
 #include <vector>
 #include <random>
@@ -46,6 +51,38 @@ public:
 
     inline bool operator==(const Matrix &rhs) {
         return rhs.get_x() == get_x() && rhs.get_y() == get_y();
+    }
+
+    Matrix operator*(const int num) {
+        std::vector<int> v(this->data.size());
+        auto lambda = [num](int a){ return a * num; };
+        std::transform(this->data.begin(), this->data.end(), v.begin(), lambda);
+        return Matrix(get_x(), get_y(), v);
+    }
+
+    /* TODO: zrobienie mnozenia macierzy przez macierz */
+
+    Matrix operator*(const Matrix &rhs) {
+        if(this->get_x() == rhs.get_y()) {
+            std::vector<int> v(this->get_x() * rhs.get_y());
+
+            /* for(int i = 0; i < get_x(); ++i) {
+                v.at(i) = this->data.at(get_index())
+            } */
+
+
+
+            auto mul = [](int a, int b){ return a * b; };
+
+            return Matrix(get_x(), get_y(), v);
+        }
+        else 
+            return *this;
+        // std::vector<int> v(this->data.size());
+        // auto lambda = [num](int a){ return a * num; };
+        // std::transform(v.begin(), v.end(), this->data.begin(), lambda);
+
+        
     }
 
     Matrix operator+(const Matrix &rhs) {
