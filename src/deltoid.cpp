@@ -1,4 +1,4 @@
-#include "deltoid.hpp"
+#include "../inc/deltoid.hpp"
 
 /* 
     dla utworzenia deltoidu w rzucie izometrycznym korzystam

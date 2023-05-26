@@ -1,15 +1,15 @@
 #include <iostream>
-#include "textboxes.hpp"
+#include "../inc/textboxes.hpp"
 
 
-sf::Font TextBoxes::set_font(const std::string &font = "PcSeniorRegular-OEnd.ttf") {
+sf::Font TextBoxes::set_font(const std::string &font) {
     sf::Font f;
     if(!f.loadFromFile(font))
         std::cerr << "Blad w ladowaniu czcionki!" << std::endl;
     return f;
 }
 
-void TextBoxes::set_boxes(int pos_x = 10, int pos_y = 10) {
+void TextBoxes::set_boxes(int pos_x, int pos_y) {
     auto initial_pos = sf::Vector2f(pos_x, pos_y);
     int font_size = 8;
 

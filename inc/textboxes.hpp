@@ -12,7 +12,7 @@ public:
         set_boxes();
     };
 
-    sf::Font set_font(const std::string &f = "PcSeniorRegular-OEnd.ttf");
+    sf::Font set_font(const std::string &f = "misc/PcSeniorRegular-OEnd.ttf");
     void set_boxes(int pos_x = 10, int pos_y = 10);
 
     friend class FPS;

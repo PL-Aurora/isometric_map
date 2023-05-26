@@ -23,7 +23,7 @@ class WorldMap : public sf::Drawable {
 
 private:
 
-    std::vector<Cube> create_map();
+    // std::vector<Cube> create_map();
 
     uint16_t world_size_x;
     uint16_t world_size_y;
