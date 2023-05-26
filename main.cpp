@@ -1,7 +1,7 @@
-#include "deltoid.hpp"
-#include "map.hpp"
-#include "matrix.hpp"
-#include "textboxes.hpp"
+#include "inc/deltoid.hpp"
+#include "inc/map.hpp"
+#include "inc/matrix.hpp"
+#include "inc/textboxes.hpp"
 
 int main(int, char**) {
 
