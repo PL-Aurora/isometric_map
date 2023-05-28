@@ -4,22 +4,16 @@
 #include "inc/textboxes.hpp"
 
 int main(int, char**) {
-
     sf::RenderWindow window(sf::VideoMode(800, 600), "isometric_view");
+    window.setFramerateLimit(60); //max 60 FPS
+    sf::Clock Clock;
     std::array<sf::Color, 3> test_color_array = {sf::Color::Red, sf::Color::Blue, sf::Color::Green};
     sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    shape.setFillColor(sf::Color::Yellow);
     shape.setPosition(30, 30);
 
-    sf::Font f;
-    f.loadFromFile("PcSeniorRegular-OEnd.ttf");
-
-    sf::Text mouse_pos;
-    mouse_pos.setPosition(15, 15);
-    mouse_pos.setCharacterSize(8);
-    mouse_pos.setFont(f);
-    
-    mouse_pos.setFillColor(sf::Color::Red);
+    /* inicjalizacja textboxow */
+    TextBoxes t;
 
     Cube c1(std::move(sf::Vector2f(500, 300)), 20, test_color_array);
     
@@ -32,16 +26,15 @@ int main(int, char**) {
 
     while (window.isOpen())
     {
-        sf::Vector2i m_pos = sf::Mouse::getPosition(window);
-
-        mouse_pos.setString("Mouse pos -> x: " + std::to_string(m_pos.x) + ", y: " + std::to_string(m_pos.y));
-
         sf::Event event;
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+
+        t.set_mouse_caption(sf::Mouse::getPosition(window));
+        t.set_fps_caption(Clock.getElapsedTime().asSeconds());
+        Clock.restart();
 
         window.clear();
         
@@ -49,7 +42,8 @@ int main(int, char**) {
         window.draw(c1);
         window.draw(c2);
         window.draw(c3);
-        window.draw(mouse_pos);
+        window.draw(t);
+
         window.display();
     }
 
