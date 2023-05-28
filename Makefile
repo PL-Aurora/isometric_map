@@ -17,7 +17,8 @@ SRC_EXT:=cpp
 OBJ_EXT:=o
 INC_EXT:=hpp
 
-MAIN_FILE = main.cpp
+MAIN_SRC_FILE=main.cpp
+MAIN_OBJ_FILE=main.o
 
 #-----------------------------
 # NIE EDYTOWAC PONIZEJ LINII!!
@@ -25,16 +26,18 @@ MAIN_FILE = main.cpp
 SRC_FILES:=$(wildcard $(SRC_DIR)/*.$(SRC_EXT))
 OBJ_FILES:=$(patsubst $(SRC_DIR)/%.$(SRC_EXT), $(OBJ_DIR)/%.$(OBJ_EXT), $(SRC_FILES))
 
-$(TARGET): $(OBJ_FILES)
+$(TARGET): $(OBJ_FILES) $(MAIN_OBJ_FILE)
 	$(CXX) $^ -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/%.$(OBJ_EXT):$(SRC_DIR)/%.$(SRC_EXT) $(INC_DIR)/%.$(INC_EXT)
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) $< -o $@
 
+$(OBJ_DIR)/$(MAIN_OBJ_FILE):$(MAIN_SRC_FILE)
+	$(CXX) $(CXXFLAGS) $< -o $@
 
 all: $(TARGET)
 
 clean:
-	rm -f $(TARGET) $(OBJ_FILES)
+	rm -f $(TARGET) $(OBJ_FILES) $(OBJ_DIR)/$(MAIN_OBJ_FILE)
 	rmdir $(OBJ_DIR)
